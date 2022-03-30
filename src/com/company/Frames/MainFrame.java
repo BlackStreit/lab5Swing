@@ -4,6 +4,8 @@ import com.company.DataBase.DataBase;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame {
      JButton addHall;
@@ -18,9 +20,10 @@ public class MainFrame extends JFrame {
         setSize(1000, 700);
         init();
         setVisible(true);
+        initListeners();
     }
 
-    void init(){
+    private void init(){
         array = DataBase.getHall();
         columnsHeader = new String[] {"Номер", "Название"};
         table = new JTable(array, columnsHeader);
@@ -40,5 +43,28 @@ public class MainFrame extends JFrame {
         contents.add(new JScrollPane(deleteHall));
 
         setContentPane(contents);
+    }
+    private void initListeners(){
+        addHall.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new AddFrame();
+            }
+        });
+        editHall.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new EditFrame();
+            }
+        });
+        deleteHall.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new DeleteFrame();
+            }
+        });
     }
 }

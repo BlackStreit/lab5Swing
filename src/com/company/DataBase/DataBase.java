@@ -114,10 +114,10 @@ public class DataBase {
             e.printStackTrace();
         }
     }
-    /*
+
     //Получить список все id залов
-    public static ObservableList<Integer> getHallId(){
-        ObservableList<Integer> ids = FXCollections.observableArrayList();
+    public static Integer[] getHallId(){
+        ArrayList<Integer> ids = new ArrayList<>();
         var sql = "select hallId from Hall;";
         try {
             ResultSet resultSet = statement.executeQuery(sql);
@@ -127,7 +127,10 @@ public class DataBase {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return ids;
+        Integer[] array = new Integer[ids.size()];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = ids.get(i);
+        }
+        return array;
     }
-     */
 }
